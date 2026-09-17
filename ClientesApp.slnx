@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/1-Presentation/">
+    <Project Path="ClientesApp.UI/ClientesApp.UI.csproj" />
+  </Folder>
+  <Folder Name="/2-Api/">
+    <Project Path="ClientesApp.APi/ClientesApp.APi.csproj" Id="fa6c9f01-13b4-46bf-9d38-7ea47d13a14e" />
+  </Folder>
+  <Folder Name="/3-Application/">
+    <Project Path="ClientesApp.Application/ClientesApp.Application.csproj" Id="8c337d20-b384-4b08-b503-f0491eaff7aa" />
+  </Folder>
+  <Folder Name="/4- Domain/">
+    <Project Path="ClientesApp.Domain/ClientesApp.Domain.csproj" Id="f4325540-ccaa-4457-9de8-68ec787c2a80" />
+  </Folder>
+  <Folder Name="/5-Infrastructure/">
+    <Project Path="ClientesApp.Infra.Data/ClientesApp.Infra.Data.csproj" Id="1cbfe9e0-0298-43f8-aa26-43c1aac90e8d" />
+  </Folder>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
+</Solution>

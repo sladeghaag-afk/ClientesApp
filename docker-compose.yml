@@ -1,0 +1,38 @@
+name: clientesapp
+
+services:
+  mongodb:
+    image: mongo:8.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: coti
+      MONGO_INITDB_ROOT_PASSWORD: coti
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--username", "coti", "--password", "coti", "--authenticationDatabase", "admin", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  express:
+    image: mongo-express:1.0.2
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5051:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: "mongodb://coti:coti@mongodb:27017/?authSource=admin"
+      ME_CONFIG_BASICAUTH_ENABLED: "true"
+      ME_CONFIG_BASICAUTH_USERNAME: coti
+      ME_CONFIG_BASICAUTH_PASSWORD: coti
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+volumes:
+  mongodb_data:
+  mongodb_config:

@@ -1,0 +1,87 @@
+﻿@page "/cadastro-cliente"
+
+<h3>Cadastro de cliente</h3>
+<p>Preencha os campos para incluir um cliente.</p>
+<hr />
+
+@if (!string.IsNullOrEmpty(mensagemSucesso))
+{
+    <div class="alert alert-success">
+        <strong>@mensagemSucesso</strong>
+    </div>
+}
+else if (!string.IsNullOrEmpty(mensagemErro))
+{
+    <div class="alert alert-danger">
+        <strong>@mensagemErro</strong>
+    </div>
+}
+
+
+<EditForm Model="@form" OnValidSubmit="@OnSubmit">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Nome do cliente:</label>
+        <InputText class="form-control" @bind-Value="form.Nome" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Nome)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Email do cliente:</label>
+        <InputText class="form-control" @bind-Value="form.Email" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Email)" />
+        </div>
+    </div>
+
+    
+ 
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success shadow" value="Realizar cadastro" />
+    </div>
+
+</EditForm>
+
+
+@using System.Text.Json
+@using ClientesApp.UI.Forms
+
+@inject HttpClient Http
+
+@code {
+
+    private CadastroClienteForm form = new();
+
+    private string mensagemSucesso = string.Empty;
+    private string mensagemErro = string.Empty;
+
+
+
+    protected async Task OnSubmit()
+    {     
+
+
+        mensagemSucesso = string.Empty;
+        mensagemErro = string.Empty;
+
+        var result = await Http.PostAsJsonAsync("/api/v1/clientes/criar", form);
+
+        if(result.IsSuccessStatusCode)
+        {
+            mensagemSucesso = "Cliente cadastrado com sucesso!";
+            form = new CadastroClienteForm();
+
+        }
+        else
+        {
+            var json = await result.Content.ReadFromJsonAsync< JsonDocument >();
+            mensagemErro = json?.RootElement.GetProperty("message").GetString()!;
+        }
+
+    }
+}
+

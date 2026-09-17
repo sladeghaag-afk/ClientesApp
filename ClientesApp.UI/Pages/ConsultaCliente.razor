@@ -1,0 +1,84 @@
+﻿@page "/consulta-cliente"
+
+<h3>Consulta de cliente</h3>
+<p>Preencha os campos para consultar clientes.</p>
+<hr />
+
+<EditForm Model="@form" OnValidSubmit="@OnSubmit">
+
+    <DataAnnotationsValidator/>
+
+    <div class="mb-3">
+        <label>Informe o nome do cliente desejado:</label>
+        <InputText class="form-control" @bind-Value="form.Nome"/>
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Nome)"/>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success shadow" value="Realizar Pesquisa"/>
+    </div>
+
+</EditForm>
+
+@if(clientes.Count() > 0)
+{
+    <table class="table table-sm table-hover">
+        <thead>
+            <tr>
+                <th>Nome do cliente</th>
+                <th>Email</th>
+                <th>Cadastrado em</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var c in clientes)
+            {
+                <tr>
+                    <td>@c.Nome</td>
+                    <td>@c.Email</td>
+                    <td>@c.DataHoraCadastro.ToString("dd/MM/yyyyy HH:mm")</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-1">
+                            Editar
+                        </button>
+                        <button class="btn btn-sm btn-danger me-1">
+                            Excluir
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">
+                    Quantidade de clientes: @clientes.Count()
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@using ClientesApp.UI.Forms
+@using ClientesApp.UI.Models
+
+@inject HttpClient Http
+
+@code {
+
+    private ConsultaClienteForm form = new();
+    private List<ClienteModel> clientes = new();
+
+    protected async Task OnSubmit()
+    {
+        var result = await Http.GetFromJsonAsync<List<ClienteModel>>("/api/v1/clientes/consultar");
+        clientes = result
+       
+                    .Where(c => c.Nome.Contains(form.Nome))
+                    .OrderBy(c => c.Nome)
+                    .ToList();
+    }
+}
+
