@@ -1,0 +1,53 @@
+﻿@page "/cadastro-cliente"
+
+<h3>Cadastro de cliente</h3>
+<p>Preencha os campos para incluir um cliente.</p>
+<hr />
+
+<EditForm Model="@form" OnValidSubmit="@OnSubmit">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Nome do cliente:</label>
+        <InputText class="form-control" @bind-Value="form.Nome" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Nome)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Email do cliente:</label>
+        <InputText class="form-control" @bind-Value="form.Email" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Email)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>CPF do cliente:</label>
+        <InputText class="form-control" @bind-Value="form.Cpf" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Cpf)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success shadow" value="Realizar cadastro" />
+    </div>
+
+</EditForm>
+
+
+@using ClientesApp.UI.Forms
+
+@code {
+
+    private CadastroClienteForm form = new();
+
+    protected async Task OnSubmit()
+    {
+
+    }
+}
+

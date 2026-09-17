@@ -1,0 +1,36 @@
+﻿@page "/consulta-cliente"
+
+<h3>Consulta de cliente</h3>
+<p>Preencha os campos para consultar clientes.</p>
+<hr />
+
+<EditForm Model="@form" OnValidSubmit="@OnSubmit">
+
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Informe o nome do cliente desejado:</label>
+        <InputText class="form-control" @bind-Value="form.Nome" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Nome)" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" class="btn btn-success shadow" value="Realizar Pesquisa" />
+    </div>
+
+</EditForm>
+
+
+@using ClientesApp.UI.Forms
+
+@code {
+
+    private ConsultaClienteForm form = new();
+
+    protected async Task OnSubmit()
+    {
+
+    }
+}
