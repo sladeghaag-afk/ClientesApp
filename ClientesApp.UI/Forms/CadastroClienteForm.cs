@@ -12,6 +12,12 @@ namespace ClientesApp.UI.Forms
         [Required(ErrorMessage = "Por favor, informe o email do cliente.")]
         public string? Email { get; set; }
 
+<<<<<<< HEAD
       
+=======
+        [RegularExpression("^[0-9]{11}$", ErrorMessage = "O cpf deve ter exatamente 11 dígitos numéricos.")]
+        [Required(ErrorMessage = "Por favor, informe o cpf do cliente.")]
+        public string? Cpf { get; set; }
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
     }
 }

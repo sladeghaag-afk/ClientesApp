@@ -8,7 +8,11 @@ using System.Text;
 
 namespace ClientesApp.Infra.Data.Repositories
 {
+<<<<<<< HEAD
     public class ClienteRepository : IClienteRepository
+=======
+    internal class ClienteRepository : IClienteRepository
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
     {
         //Mapeamento da entidade para o banco de dados
         private readonly IMongoCollection<Cliente> _collection;

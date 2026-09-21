@@ -6,6 +6,7 @@
 
 <EditForm Model="@form" OnValidSubmit="@OnSubmit">
 
+<<<<<<< HEAD
     <DataAnnotationsValidator/>
 
     <div class="mb-3">
@@ -13,15 +14,29 @@
         <InputText class="form-control" @bind-Value="form.Nome"/>
         <div class="text-danger">
             <ValidationMessage For="@(() => form.Nome)"/>
+=======
+    <DataAnnotationsValidator />
+
+    <div class="mb-3">
+        <label>Informe o nome do cliente desejado:</label>
+        <InputText class="form-control" @bind-Value="form.Nome" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Nome)" />
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
         </div>
     </div>
 
     <div class="mb-3">
+<<<<<<< HEAD
         <input type="submit" class="btn btn-success shadow" value="Realizar Pesquisa"/>
+=======
+        <input type="submit" class="btn btn-success shadow" value="Realizar Pesquisa" />
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
     </div>
 
 </EditForm>
 
+<<<<<<< HEAD
 @if(clientes.Count() > 0)
 {
     <table class="table table-sm table-hover">
@@ -65,10 +80,15 @@
 @using ClientesApp.UI.Models
 
 @inject HttpClient Http
+=======
+
+@using ClientesApp.UI.Forms
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 
 @code {
 
     private ConsultaClienteForm form = new();
+<<<<<<< HEAD
     private List<ClienteModel> clientes = new();
 
     protected async Task OnSubmit()
@@ -82,3 +102,11 @@
     }
 }
 
+=======
+
+    protected async Task OnSubmit()
+    {
+
+    }
+}
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de

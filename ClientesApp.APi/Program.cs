@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 using ClientesApp.Application.Interfaces;
 using ClientesApp.Application.Services;
@@ -5,6 +6,8 @@ using ClientesApp.Domain.Interfaces;
 using ClientesApp.Domain.Services;
 using ClientesApp.Infra.Data.Repositories;
 
+=======
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -14,6 +17,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+<<<<<<< HEAD
 // Leitura das configurações do MongoDB
 var connectionString = builder.Configuration["MongoDB:ConnectionString"]!;
 var databaseName = builder.Configuration["MongoDB:DatabaseName"]!;
@@ -42,11 +46,17 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 app.UseCors("CorsAll");
+=======
+var app = builder.Build();
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 }
 
 //Executando o Swagger

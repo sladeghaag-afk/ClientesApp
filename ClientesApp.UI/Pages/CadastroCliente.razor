@@ -4,6 +4,7 @@
 <p>Preencha os campos para incluir um cliente.</p>
 <hr />
 
+<<<<<<< HEAD
 @if (!string.IsNullOrEmpty(mensagemSucesso))
 {
     <div class="alert alert-success">
@@ -18,6 +19,8 @@ else if (!string.IsNullOrEmpty(mensagemErro))
 }
 
 
+=======
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 <EditForm Model="@form" OnValidSubmit="@OnSubmit">
 
     <DataAnnotationsValidator />
@@ -38,8 +41,19 @@ else if (!string.IsNullOrEmpty(mensagemErro))
         </div>
     </div>
 
+<<<<<<< HEAD
     
  
+=======
+    <div class="mb-3">
+        <label>CPF do cliente:</label>
+        <InputText class="form-control" @bind-Value="form.Cpf" />
+        <div class="text-danger">
+            <ValidationMessage For="@(() => form.Cpf)" />
+        </div>
+    </div>
+
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
     <div class="mb-3">
         <input type="submit" class="btn btn-success shadow" value="Realizar cadastro" />
     </div>
@@ -47,15 +61,21 @@ else if (!string.IsNullOrEmpty(mensagemErro))
 </EditForm>
 
 
+<<<<<<< HEAD
 @using System.Text.Json
 @using ClientesApp.UI.Forms
 
 @inject HttpClient Http
 
+=======
+@using ClientesApp.UI.Forms
+
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 @code {
 
     private CadastroClienteForm form = new();
 
+<<<<<<< HEAD
     private string mensagemSucesso = string.Empty;
     private string mensagemErro = string.Empty;
 
@@ -81,6 +101,10 @@ else if (!string.IsNullOrEmpty(mensagemErro))
             var json = await result.Content.ReadFromJsonAsync< JsonDocument >();
             mensagemErro = json?.RootElement.GetProperty("message").GetString()!;
         }
+=======
+    protected async Task OnSubmit()
+    {
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 
     }
 }

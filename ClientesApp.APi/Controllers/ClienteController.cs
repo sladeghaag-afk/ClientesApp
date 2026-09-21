@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 ﻿using ClientesApp.Application.Dtos;
 using ClientesApp.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
+=======
+﻿using Microsoft.AspNetCore.Http;
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
 using Microsoft.AspNetCore.Mvc;
 
 namespace ClientesApp.Api.Controllers
@@ -9,6 +13,7 @@ namespace ClientesApp.Api.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
+<<<<<<< HEAD
 
 
         private readonly IClienteAppService _clienteAppService;
@@ -93,11 +98,30 @@ namespace ClientesApp.Api.Controllers
 
 
 
+=======
+        [HttpPost("criar")]
+        public async Task<IActionResult> PostAsync()
+        {
+            return Ok();
+        }
+
+        [HttpDelete("alterar")]
+        public async Task<IActionResult> PutAsync()
+        {
+            return Ok();
+        }
+
+        [HttpGet("excluir")]
+        public async Task<IActionResult> DeleteAsync()
+        {
+            return Ok();
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
         }
 
         [HttpPut("consultar")]
         public async Task<IActionResult> GetAsync()
         {
+<<<<<<< HEAD
 
             var response = await _clienteAppService.GetAllAsync();
             return Ok(response);
@@ -111,6 +135,15 @@ namespace ClientesApp.Api.Controllers
             var response = await _clienteAppService.GetByIdAsync(id.ToString());
         return Ok(response);
 
+=======
+            return Ok();
+        }
+
+        [HttpPut("obter")]
+        public async Task<IActionResult> GetByIdAsync()
+        {
+            return Ok();
+>>>>>>> cf71fa97ecae1826c6e0ae7688dafaa9714af1de
         }
     }
 }
